@@ -14,8 +14,10 @@ import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SearchBar
 import androidx.compose.material3.SearchBarDefaults
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
@@ -62,14 +64,23 @@ class TestAPP : ComponentActivity() {
                 val communityViewModel: CommunityViewModel = viewModel(
                     factory = CommunityViewModel.factory(appContext)
                 )
-                AppNavHost(
-                    rootNavController = rootNavController,
-                    userProfileViewModel = userProfileViewModel,
-                    flashcardSetViewModel = flashcardSetViewModel,
-                    discoverViewModel = discoverViewModel,
-                    communityViewModel = communityViewModel,
-                    modifier = Modifier.fillMaxSize()
-                )
+                // Surface sets LocalContentColor = onBackground for the whole
+                // app, so text without an explicit color stays readable in dark
+                // mode on the root-level screens (Premium/Profile/Scan/Detail)
+                // that aren't wrapped by the Scaffold.
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    AppNavHost(
+                        rootNavController = rootNavController,
+                        userProfileViewModel = userProfileViewModel,
+                        flashcardSetViewModel = flashcardSetViewModel,
+                        discoverViewModel = discoverViewModel,
+                        communityViewModel = communityViewModel,
+                        modifier = Modifier.fillMaxSize()
+                    )
+                }
             }
         }
     }
