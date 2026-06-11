@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "394614377252",
+    "project_id": "quizland-7e238",
+    "storage_bucket": "quizland-7e238.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:394614377252:android:2a5bb709b55a201ac981b1",
+        "android_client_info": {
+          "package_name": "com.alanwine.quizland"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALwYDrd_FHOwCaEI-yRohJZhPmYQyJGpU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

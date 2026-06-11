@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">test</string>
-    <string name="title_activity_test_app">TestAPP</string>
+    <string name="app_name">Quizland</string>
+    <string name="title_activity_test_app">Quizland</string>
 </resources>

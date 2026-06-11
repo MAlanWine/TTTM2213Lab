@@ -1,4 +1,6 @@
-# TTTM 2213 Lab Project
+# Quizland
+
+A Quizlet-style flashcard learning app for **SDG 4 – Quality Education**, built with Kotlin and Jetpack Compose (Material 3). Students create their own study sets, discover quizzes from the web, share sets to a community cloud, and import a friend's set by scanning a QR code.
 
 ## Student Information
 
@@ -6,37 +8,40 @@
 |---|---|
 | **Name** | YUAN YIWEI |
 | **Matric No** | A207421 |
-| **Course** | TTTM 2213 |
+| **Course** | TM2213 Mobile Application Programming |
+| **Instructor** | Cikgu Izwan |
+| **SDG** | SDG 4 – Quality Education |
 
-## Project Description
+## SDG Theme
 
-An Android flashcard learning application (Quizlet-style UI) built with **Kotlin** and **Jetpack Compose (Material 3)**. This project demonstrates modern Android UI development techniques covered in the lab sessions.
+**SDG 4 – Quality Education.** Many students struggle to keep study notes in one place and revise efficiently. Quizland lets users build flashcard sets, pull in live quiz content, and share decks with classmates — supporting self-directed learning and equal access to study tools.
+
+## Features
+
+The app implements four technical pillars across **9 screens** (Home, Discover, Create, Library, Community, Profile, Premium, Set Detail, Scan):
+
+| Pillar | Where | What it does |
+|---|---|---|
+| **Local Persistence** (Room) | Library, Create, Profile | Flashcard sets, card contents and the user profile are stored on-device and stay available offline |
+| **Web API** (Retrofit) | Discover | Fetches live quiz categories and questions from the [Open Trivia DB](https://opentdb.com) REST API; one tap saves them as a set |
+| **Cloud** (Firebase Firestore) | Community, Set Detail | Share a set to the community cloud and browse / import sets shared by others |
+| **Sensor** (Camera) | Scan | Scans a Quizland QR code with CameraX + ML Kit, then fetches that set from the cloud into the local library |
 
 ## Tech Stack
 
 - **Language:** Kotlin
-- **UI Framework:** Jetpack Compose + Material 3
-- **Build Tool:** Gradle (Kotlin DSL)
-- **Min SDK:** 24 (Android 7.0) | **Target SDK:** 36
+- **UI:** Jetpack Compose + Material 3 + Navigation Compose
+- **Local DB:** Room
+- **Networking:** Retrofit + Gson
+- **Cloud:** Firebase Firestore
+- **Sensor:** CameraX + ML Kit Barcode Scanning (QR generation via ZXing)
+- **Min SDK:** 24 (Android 7.0) · **Target SDK:** 36
 
-## App Features
+## Setup & Run
 
-- Top search bar with user avatar
-- "Jump back in" card with progress indicator and action buttonx
-- Recently accessed flashcard sets display
-- Horizontally scrollable recommended flashcard set lists
-- Bottom navigation bar (Home, Create, Library, Premium)
+> ⚠️ **Developed & compiled on Linux.** On Windows, the first open may show a path / "SDK location not found" error, because `local.properties` is machine-specific (git-ignored) and still holds a Linux SDK path. Fix: when Android Studio prompts, set your local SDK location (it regenerates `local.properties`), then **Sync Gradle** — it builds normally after that.
 
-## Lab Progress
-
-| Lab | Status | Description |
-|---|---|---|
-| Lab 1 | Completed | |
-| Lab 2 | Completed | |
-| Lab 3 | Completed | |
-
-## How to Run
-
-1. Open the project in **Android Studio**
-2. Sync Gradle dependencies
-3. Run on an emulator or physical device (API 24+)
+1. Clone the repository and open it in **Android Studio**.
+2. **Firebase:** `app/google-services.json` is included. To use your own project, create a Firebase project, add an Android app with package `com.alanwine.quizland`, enable **Firestore Database** (test mode), and drop the downloaded `google-services.json` into `app/`.
+3. **Sync Gradle**, then **Run** on an emulator or physical device (API 24+).
+4. A physical device is recommended so the camera (QR scanning) works.

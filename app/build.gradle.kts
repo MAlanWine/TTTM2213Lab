@@ -2,10 +2,11 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.google.services)
 }
 
 android {
-    namespace = "com.example.test"
+    namespace = "com.alanwine.quizland"
     compileSdk {
         version = release(36) {
             minorApiLevel = 1
@@ -13,7 +14,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.test"
+        applicationId = "com.alanwine.quizland"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
@@ -61,4 +62,22 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
+
+    // Retrofit — Web API (Open Trivia DB)
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.converter.gson)
+
+    // Firebase — Cloud (Firestore community sets)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.firestore)
+    implementation(libs.kotlinx.coroutines.play.services)
+
+    // CameraX + ML Kit — Sensor (QR code scanning)
+    implementation(libs.androidx.camera.camera2)
+    implementation(libs.androidx.camera.lifecycle)
+    implementation(libs.androidx.camera.view)
+    implementation(libs.mlkit.barcode.scanning)
+
+    // ZXing — QR code generation for sharing
+    implementation(libs.zxing.core)
 }

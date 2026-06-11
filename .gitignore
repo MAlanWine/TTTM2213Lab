@@ -14,4 +14,6 @@
 .cxx
 local.properties
 
-*.md
+
+CLAUDE.md
+Project*.md
